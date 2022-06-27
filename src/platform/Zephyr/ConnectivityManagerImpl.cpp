@@ -51,7 +51,9 @@ CHIP_ERROR ConnectivityManagerImpl::_Init()
 #if CHIP_DEVICE_CONFIG_ENABLE_THREAD
     GenericConnectivityManagerImpl_Thread<ConnectivityManagerImpl>::_Init();
 #endif
-
+//#if CHIP_DEVICE_CONFIG_ENABLE_WIFI
+    // GenericConnectivityManagerImpl_WiFi<ConnectivityManagerImpl>::_Init();
+//#endif
     return CHIP_NO_ERROR;
 }
 
@@ -61,6 +63,9 @@ void ConnectivityManagerImpl::_OnPlatformEvent(const ChipDeviceEvent * event)
 #if CHIP_DEVICE_CONFIG_ENABLE_THREAD
     GenericConnectivityManagerImpl_Thread<ConnectivityManagerImpl>::_OnPlatformEvent(event);
 #endif
+//#if CHIP_DEVICE_CONFIG_ENABLE_WIFI
+    // GenericConnectivityManagerImpl_WiFi<ConnectivityManagerImpl>::_OnPlatformEvent(event);
+//#endif
 }
 
 } // namespace DeviceLayer

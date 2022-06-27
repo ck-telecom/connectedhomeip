@@ -26,6 +26,7 @@
 #include <platform/CHIPDeviceEvent.h>
 
 #include <bluetooth/bluetooth.h>
+#include <zephyr/net/wifi_mgmt.h>
 
 namespace chip {
 namespace DeviceLayer {
@@ -52,6 +53,10 @@ enum InternalPlatformSpecificEventTypes
     kPlatformZephyrBleC1WriteEvent,
     kPlatformZephyrBleC2IndDoneEvent,
     kPlatformZephyrBleOutOfBuffersEvent,
+    kPlatformZephyrWifiScanResult,
+    kPlatformZephyrWifiScanDone,
+    kPlatformZephyrWifiConnect,
+    kPlatformZephyrWifiDisconnect
 };
 
 } // namespace DeviceEventType
@@ -80,6 +85,26 @@ struct BleC2IndDoneEventType
     uint8_t Result;
 };
 
+struct WifiScanResultEventType
+{
+    const struct wifi_scan_result Result;
+};
+
+struct WifiScanDoneEventType
+{
+    const struct wifi_status Status;
+};
+
+struct WifiConnectResultEventType
+{
+    const struct wifi_status Status;
+};
+
+struct WifiDisconnectResultEventType
+{
+    const struct wifi_status Status;
+};
+
 /**
  * Represents platform-specific event information for Zephyr platforms.
  */
@@ -91,6 +116,10 @@ struct ChipDevicePlatformEvent final
         BleCCCWriteEventType BleCCCWriteEvent;
         BleC1WriteEventType BleC1WriteEvent;
         BleC2IndDoneEventType BleC2IndDoneEvent;
+        WifiScanResultEventType WifiScanResultEvent;
+        WifiScanDoneEventType WifiScanDoneEvent;
+        WifiConnectResultEventType WifiConnectResultEvent;
+        WifiDisconnectResultEventType WifiDisconnectResultEvent;
     };
 };
 

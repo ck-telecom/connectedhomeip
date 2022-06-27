@@ -66,6 +66,14 @@ static_library("Zephyr") {
     }
   }
 
+  if (chip_enable_wifi) {
+    sources += [
+      "ConnectivityManagerImpl_WiFi.cpp",
+      "NetworkCommissioningDriver.cpp",
+      "NetworkCommissioningDriver.h",
+    ]
+  }
+
   if (chip_enable_nfc) {
     sources += [
       "NFCManagerImpl.cpp",

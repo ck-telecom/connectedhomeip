@@ -195,6 +195,7 @@ chip_gn_arg_string("zephyr_cxx"                             ${CMAKE_CXX_COMPILER
 chip_gn_arg_string("chip_project_config_include"            "${CHIP_PROJECT_CONFIG}")
 chip_gn_arg_string("chip_system_project_config_include"     "${CHIP_PROJECT_CONFIG}")
 chip_gn_arg_bool  ("is_debug"                               CONFIG_DEBUG)
+chip_gn_arg_bool  ("chip_enable_wifi"                       CONFIG_WIFI)
 chip_gn_arg_bool  ("chip_enable_openthread"                 CONFIG_NET_L2_OPENTHREAD)
 chip_gn_arg_bool  ("chip_openthread_ftd"                    CONFIG_OPENTHREAD_FTD)
 chip_gn_arg_bool  ("chip_inet_config_enable_ipv4"           CONFIG_NET_IPV4)

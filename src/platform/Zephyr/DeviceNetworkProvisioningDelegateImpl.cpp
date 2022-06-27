@@ -24,6 +24,25 @@
 namespace chip {
 namespace DeviceLayer {
 
+
+CHIP_ERROR
+DeviceNetworkProvisioningDelegateImpl::_ProvisionWiFiNetwork(const char * ssid, const char * passwd)
+{
+#if CHIP_DEVICE_CONFIG_ENABLE_WIFI_STATION
+    CHIP_ERROR err = CHIP_NO_ERROR;
+    ChipLogProgress(NetworkProvisioning, "DeviceNetworkProvisioningDelegate: SSID: %s", ssid);
+
+    err = ConnectivityMgrImpl().ProvisionWiFiNetwork(ssid, key);
+    if (err != CHIP_NO_ERROR)
+    {
+        ChipLogError(NetworkProvisioning, "Failed to connect to WiFi network: %s", chip::ErrorStr(err));
+    }
+    return err;
+#else
+    return CHIP_ERROR_NOT_IMPLEMENTED;
+#endif // CHIP_DEVICE_CONFIG_ENABLE_WIFI_STATION
+}
+
 CHIP_ERROR
 DeviceNetworkProvisioningDelegateImpl::_ProvisionThreadNetwork(ByteSpan threadData)
 {
